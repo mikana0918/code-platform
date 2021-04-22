@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS `platform_auth_sample` COLLATE 'utf8_general_ci' ;
