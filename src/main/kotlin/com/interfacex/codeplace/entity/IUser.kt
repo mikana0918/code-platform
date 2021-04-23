@@ -18,7 +18,7 @@ data class IUser (
     var email: String = "",
 
     @Column(name="password")
-    var pass: String = "",
+    var pass: String? = "",
 
     @Column(name = "role_type")
     var roleType: String = ""
@@ -27,20 +27,21 @@ data class IUser (
         return AuthorityUtils.createAuthorityList(this.roleType)
     }
 
-    override fun isEnabled(): Boolean {
-        return true
-    }
-
     override fun getUsername(): String? {
         return this.email
     }
 
-    override fun isCredentialsNonExpired(): Boolean {
-        return true
-    }
 
     override fun getPassword(): String? {
         return this.pass
+    }
+
+    override fun isEnabled(): Boolean {
+        return true
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return true
     }
 
     override fun isAccountNonExpired(): Boolean {
