@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig @Autowired constructor(private val userRepository: IUserRepository, private val userDetailsService: MyUserDetailsService) : WebSecurityConfigurerAdapter(){
+class SecurityConfig @Autowired constructor(private val userDetailsService: MyUserDetailsService) : WebSecurityConfigurerAdapter(){
     @Bean
     fun passwordEncoder(): PasswordEncoder? {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
@@ -40,11 +40,4 @@ class SecurityConfig @Autowired constructor(private val userRepository: IUserRep
             .and()
             .formLogin()
     }
-
-// 平文で保存する場合（productionで絶対に利用しないこと）
-//    @SuppressWarnings("deprecation")
-//    @Bean
-//    fun passwordEncoder(): NoOpPasswordEncoder? {
-//        return NoOpPasswordEncoder.getInstance() as NoOpPasswordEncoder
-//    }
 }
